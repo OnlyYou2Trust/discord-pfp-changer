@@ -20,9 +20,9 @@ async function changeAvatar(client, token) {
 
 
         await client.user.setAvatar(imagePath);
-        console.log(`Avatar cambiado para el token: ${token}`);
+        console.log(`Changed avatar for token: ${token}`);
     } catch (error) {
-        console.error(`Error cambiando avatar para el token: ${token}`, error);
+        console.error(`Could not change avatar for token: ${token}`, error);
     }
 }
 
@@ -30,18 +30,18 @@ async function changeAvatar(client, token) {
 async function main() {
 
     for (const token of tokens) {
-        console.log(`Intentando iniciar sesión con el token: ${token}`);
+        console.log(`Logging into token...: ${token}`);
 
         const client = new Client();
 
         client.once('ready', () => {
-            console.log(`Conectado con el token: ${token}`);
+            console.log(`Logged into token: ${token}`);
             
             changeAvatar(client, token);
         });
 
         await client.login(token).catch(err => {
-            console.error(`Error al iniciar sesión con el token: ${token}`, err);
+            console.error(`Could not login to token: ${token}`, err);
         });
     }
 }
